@@ -8,12 +8,15 @@ import {AppComponent} from './app.component';
 import {MainComponent} from './components/main/main.component';
 import {DialogModule} from 'primeng/dialog';
 import {FrequencyDialogueComponent} from './components/frequency-dialogue/frequency-dialogue.component';
+import { FrequencyInputComponent } from './components/frequency-dialogue/frequency-input/frequency-input.component';
+import {ButtonModule} from 'primeng/button';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    FrequencyDialogueComponent
+    FrequencyDialogueComponent,
+    FrequencyInputComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +27,8 @@ import {FrequencyDialogueComponent} from './components/frequency-dialogue/freque
         {path: 'main', component: MainComponent}
       ]
     ),
-    DialogModule
+    DialogModule,
+    ButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
