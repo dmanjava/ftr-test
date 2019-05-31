@@ -7,15 +7,17 @@ import {RouterModule} from '@angular/router';
 import {AppComponent} from './app.component';
 import {MainComponent} from './components/main/main.component';
 import {DialogModule} from 'primeng/dialog';
-import {FrequencyDialogueComponent} from './components/frequency-dialogue/frequency-dialogue.component';
+import {FrequencyDialogComponent} from './components/frequency-dialog/frequency-dialog.component';
 import {ButtonModule} from 'primeng/button';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {PromptDialogComponent} from './components/prompt-dialog/prompt-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    FrequencyDialogueComponent
+    FrequencyDialogComponent,
+    PromptDialogComponent
   ],
   imports: [
     BrowserModule,
