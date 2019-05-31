@@ -17,11 +17,12 @@ export class AppComponent implements OnInit {
   // status of our app
   appStatus: string;
 
-  output: string = 'OutPut here....';
+  output: string;
 
   ngOnInit(): void {
     this.setFrequency(0);
     this.appStatus = AppStatus.INIT;
+    this.output = '';
   }
 
   getAppStatus() {
@@ -42,14 +43,17 @@ export class AppComponent implements OnInit {
 
   haltClick(e) {
     this.setAppStatus(AppStatus.HALT);
+    this.output += this.output + '\n' + ' timer ' + this.getAppStatus();
   }
 
   resumeClick(e) {
     this.setAppStatus(AppStatus.RESUME);
+    this.output += this.output + '\n' + ' timer ' + this.getAppStatus();
   }
 
   quitClick(e) {
     this.setAppStatus(AppStatus.QUIT);
+    this.output += this.output + '\n' + ' timer ' + this.getAppStatus();
   }
 
 }
