@@ -1,4 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {FrequencyDialogComponent} from './components/frequency-dialog/frequency-dialog.component';
+import {PromptDialogComponent} from './components/prompt-dialog/prompt-dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -6,6 +8,8 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  @ViewChild('frequencyDialogComponent') frequencyDialogComponent: FrequencyDialogComponent;
+  @ViewChild('promptDialogComponent') promptDialogComponent: PromptDialogComponent;
 
   APPSTATUS = AppStatus;
 
@@ -17,12 +21,17 @@ export class AppComponent implements OnInit {
   // status of our app
   appStatus: string;
 
+  // this is our output
   output: string;
+
+  //this is our array or numbers
+  numbers: Array<MyNumber>;
 
   ngOnInit(): void {
     this.setFrequency(0);
     this.appStatus = AppStatus.INIT;
     this.output = '';
+    this.numbers = new Array<MyNumber>();
   }
 
   getAppStatus() {
@@ -56,6 +65,14 @@ export class AppComponent implements OnInit {
     this.output += this.output + '\n' + ' timer ' + this.getAppStatus();
   }
 
+  addNumber(anum: MyNumber) {
+    this.numbers.push(anum);
+  }
+
+  initPromptDialog(){
+    this.promptDialogComponent.visible = true;
+  }
+
 }
 
 export enum AppStatus {
@@ -64,4 +81,18 @@ export enum AppStatus {
   HALT = 'Halted...',
   RESUME = 'Resume...',
   QUIT = 'Done. Mahalo for playing!'
+}
+
+export class MyNumber {
+  private aNumber: number;
+  private isFib: boolean;
+
+  getNumber(): number {
+    return this.aNumber;
+  }
+
+  setNumber(num: number) {
+    this.aNumber = num;
+  }
+
 }

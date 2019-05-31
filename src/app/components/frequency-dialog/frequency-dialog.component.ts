@@ -24,6 +24,7 @@ export class FrequencyDialogComponent implements OnInit {
     if (freqTxt.value.length >= 1) {
       if (!isNaN(freqTxt.value)) {
         this.appComponent.setFrequency(this.frequency);
+        this.appComponent.initPromptDialog();
         this.visible = false;
       } else {
         alert('Please enter a valid number.');

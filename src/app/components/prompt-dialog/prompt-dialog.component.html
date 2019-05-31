@@ -1,3 +1,21 @@
-<p>
-  prompt-dialog works!
-</p>
+<p-dialog #dialog header="Enter a number..."
+          [(visible)]="visible"
+          [modal]="true"
+          [width]="400"
+          [height]="150">
+
+  <div class="main">
+
+    <label for="prompt">A number:</label>
+    <input type="text" id="prompt"
+           class="form-control"
+           name="prompt" #prompt [(ngModel)]="aNumber"
+           required minlength="1">
+
+    <button #okbtn pButton icon="fa fa-tally"
+            type="button"
+            label="ok"
+            (click)="btnClick($event)"></button>
+  </div>
+  <pre>{{aNumber}}</pre>
+</p-dialog>

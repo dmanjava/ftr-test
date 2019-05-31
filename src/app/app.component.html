@@ -40,5 +40,8 @@
 
 </div>
 
-<app-frequency-dialogue [appComponent]="this"></app-frequency-dialogue>
+<!-- our frequency dialog -->
+<app-frequency-dialogue #frequencyDialogComponent [appComponent]="this"></app-frequency-dialogue>
 
+<!-- our prompt dialog -->
+<app-prompt-dialog #promptDialogComponent [appComponent]="this"></app-prompt-dialog>
