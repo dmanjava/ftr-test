@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {AppComponent} from '../../app.component';
 
 @Component({
@@ -21,26 +21,21 @@ export class FrequencyDialogueComponent implements OnInit {
   btnClick(event) {
     const freqTxt = document.getElementById('freq') as HTMLInputElement;
     debugger;
-    if ( freqTxt.value.length >= 1 ) {
-      this.appComponent.setFrequency(this.frequency);
-      this.visible = false;
+    if (freqTxt.value.length >= 1) {
+      if (!isNaN(freqTxt.value)) {
+        this.appComponent.setFrequency(this.frequency);
+        this.visible = false;
+      } else {
+        alert('Please enter a valid number.');
+        freqTxt.value = '';
+        freqTxt.focus();
+      }
+
     } else {
-      alert('Enter a valid frequency in seconds.');
+      alert('Please enter a frequency in seconds.');
       freqTxt.focus();
     }
 
   }
-
-  isNumber(): boolean {
-    let num: number;
-    try {
-      num = this.frequency;
-      return true;
-    } catch (e) {
-      this.frequency = 0;
-      return false;
-    }
-  }
-
 
 }
