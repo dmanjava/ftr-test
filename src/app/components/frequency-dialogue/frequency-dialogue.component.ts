@@ -1,6 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {AppComponent} from '../../app.component';
-import {FormBuilder, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-frequency-dialogue',
@@ -9,20 +8,27 @@ import {FormBuilder, Validators} from '@angular/forms';
 })
 export class FrequencyDialogueComponent implements OnInit {
   @Input() appComponent: AppComponent;
-  form: any;
   visible = true;
   frequency: any;
 
-  constructor(protected fb: FormBuilder) { }
+  constructor() {
+  }
 
   ngOnInit() {
 
   }
 
   btnClick(event) {
-    alert('click dude ' + JSON.stringify(event));
-    this.appComponent.setFrequency(this.frequency);
-    this.visible = false;
+    const freqTxt = document.getElementById('freq') as HTMLInputElement;
+    debugger;
+    if ( freqTxt.value.length >= 1 ) {
+      this.appComponent.setFrequency(this.frequency);
+      this.visible = false;
+    } else {
+      alert('Enter a valid frequency in seconds.');
+      freqTxt.focus();
+    }
+
   }
 
   isNumber(): boolean {
@@ -30,8 +36,7 @@ export class FrequencyDialogueComponent implements OnInit {
     try {
       num = this.frequency;
       return true;
-    }
-    catch (e) {
+    } catch (e) {
       this.frequency = 0;
       return false;
     }

@@ -15,7 +15,6 @@ export class AppComponent {
 
   setFrequency(frequency: number) {
     this.frequency = frequency;
-    alert(this.getFrequency());
   }
 
   getFrequency(): number {
