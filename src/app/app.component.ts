@@ -7,12 +7,17 @@ import {Component, OnInit} from '@angular/core';
 })
 export class AppComponent implements OnInit {
 
-  const APPSTATUS = AppStatus;
+  APPSTATUS = AppStatus;
 
   title = 'FTR Test App';
+
+  // frequency to display output in seconds
   frequency: number;
 
+  // status of our app
   appStatus: string;
+
+  output: string = 'OutPut here....';
 
   ngOnInit(): void {
     this.setFrequency(0);
@@ -46,11 +51,13 @@ export class AppComponent implements OnInit {
   quitClick(e) {
     this.setAppStatus(AppStatus.QUIT);
   }
+
 }
 
 export enum AppStatus {
+  PROMPT = 'Please enter a number',
   INIT = 'Initialized...',
   HALT = 'Halted...',
   RESUME = 'Resume...',
-  QUIT = 'Done.'
+  QUIT = 'Done. Mahalo for playing!'
 }

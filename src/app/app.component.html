@@ -6,34 +6,38 @@
 </div>
 
 <div class="main" *ngIf="getFrequency()">
+  <div class="status">
   Application is {{getAppStatus()}}
+  </div>
   <hr>
-  Frequency is: {{getFrequency()}}
+  Frequency is: {{getFrequency()}} second(s).
+  <br>
 
-
+  <hr>
   <div class="buttons">
-    <button #haltBtn pButton
+    <button #haltBtn pButton icon="fa fa-pause"
             type="button"
             label="Halt"
             (click)="haltClick($event)"></button>
 
-    <button #resumeBtn pButton
+    <button #resumeBtn pButton icon="fa fa-play"
             type="button"
             label="Resume"
             (click)="resumeClick($event)"></button>
 
-    <button #quitBtn pButton
+    <button #quitBtn pButton icon="fa fa-stop"
             type="button"
             label="Quit"
             (click)="quitClick($event)"></button>
   </div>
-</div>
 
-<!--
-<div class = "router-outlet">
-  <router-outlet></router-outlet>
+  <hr>
+  <!-- display our output here -->
+  <pre>
+  {{output}}
+</pre>
+
 </div>
--->
 
 <app-frequency-dialogue [appComponent]="this"></app-frequency-dialogue>
 
