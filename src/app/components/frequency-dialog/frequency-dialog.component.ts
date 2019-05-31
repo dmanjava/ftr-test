@@ -3,10 +3,10 @@ import {AppComponent} from '../../app.component';
 
 @Component({
   selector: 'app-frequency-dialogue',
-  templateUrl: './frequency-dialogue.component.html',
-  styleUrls: ['./frequency-dialogue.component.css']
+  templateUrl: './frequency-dialog.component.html',
+  styleUrls: ['./frequency-dialog.component.css']
 })
-export class FrequencyDialogueComponent implements OnInit {
+export class FrequencyDialogComponent implements OnInit {
   @Input() appComponent: AppComponent;
   visible = true;
   frequency: any;
@@ -24,6 +24,7 @@ export class FrequencyDialogueComponent implements OnInit {
     if (freqTxt.value.length >= 1) {
       if (!isNaN(freqTxt.value)) {
         this.appComponent.setFrequency(this.frequency);
+        this.appComponent.initPromptDialog();
         this.visible = false;
       } else {
         alert('Please enter a valid number.');

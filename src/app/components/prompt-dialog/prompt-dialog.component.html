@@ -1,21 +1,21 @@
-<p-dialog #dialog header="Enter a frequency in seconds..."
+<p-dialog #dialog header="Enter a number..."
           [(visible)]="visible"
           [modal]="true"
           [width]="400"
-          [height]="400">
+          [height]="150">
 
   <div class="main">
 
-    <label for="freq">Frequency</label>
-    <input type="text" id="freq"
+    <label for="prompt">A number:</label>
+    <input type="text" id="prompt"
            class="form-control"
-           name="freq" #freq [(ngModel)]="frequency"
+           name="prompt" #prompt [(ngModel)]="aNumber"
            required minlength="1">
 
-    <button #okbtn pButton
+    <button #okbtn pButton icon="fa fa-hashtag"
             type="button"
             label="ok"
             (click)="btnClick($event)"></button>
   </div>
-  <pre>{{frequency}}</pre>
+  <pre>{{aNumber}}</pre>
 </p-dialog>
