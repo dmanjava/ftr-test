@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AppComponent} from '../../app.component';
-import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import {FormBuilder, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-frequency-dialogue',
@@ -21,8 +21,20 @@ export class FrequencyDialogueComponent implements OnInit {
 
   btnClick(event) {
     alert('click dude ' + JSON.stringify(event));
-    this.appComponent.setFrequency(34);
+    this.appComponent.setFrequency(this.frequency);
     this.visible = false;
+  }
+
+  isNumber(): boolean {
+    let num: number;
+    try {
+      num = this.frequency;
+      return true;
+    }
+    catch (e) {
+      this.frequency = 0;
+      return false;
+    }
   }
 
 
