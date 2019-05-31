@@ -5,10 +5,10 @@
   </h1>
 </div>
 
-
+Frequency is: {{getFrequency()}}
 <div class = "router-outlet">
   <router-outlet></router-outlet>
 </div>
 
-<app-frequency-dialogue></app-frequency-dialogue>
+<app-frequency-dialogue [appComponent]="this"></app-frequency-dialogue>
 
