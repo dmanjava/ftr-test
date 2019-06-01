@@ -35,4 +35,5 @@ export class PromptDialogComponent implements OnInit {
       alert('Number cannot be blank.');
       promptTxt.focus();
     }
+  }
 }
