@@ -20,9 +20,10 @@ export class FrequencyDialogComponent implements OnInit {
 
   btnClick(event) {
     const freqTxt = document.getElementById('freq') as HTMLInputElement;
+    let f: any = freqTxt.value;
     debugger;
     if (freqTxt.value.length >= 1) {
-      if (!isNaN(freqTxt.value)) {
+      if (!isNaN(f)) {
         this.appComponent.setFrequency(this.frequency);
         this.appComponent.initPromptDialog();
         this.visible = false;

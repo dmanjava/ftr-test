@@ -19,9 +19,10 @@ export class PromptDialogComponent implements OnInit {
 
   btnClick(event) {
     const promptTxt = document.getElementById('prompt') as HTMLInputElement;
+    let n: any = promptTxt.value;
     debugger;
     if (promptTxt.value.length >= 1) {
-      if (!isNaN(promptTxt.value)) {
+      if (!isNaN(n)) {
         this.visible = false;
         this.aNumber = promptTxt.value;
         this.appComponent.addNumber(this.aNumber);
