@@ -23,7 +23,8 @@ export class AppComponent implements OnInit {
   frequency: number;
 
   // TODO this is our timer for now
-  private timer: any;
+  timerPaused: boolean;
+  timer: any;
 
   // status of our app
   appStatus: string;
@@ -61,17 +62,19 @@ export class AppComponent implements OnInit {
     debugger;
     // TODO do this here for now
     const fmillis = this.frequency * 1000
-
-    console.log('init timer');
-
-    setInterval(() => {
-      this.updateOutPut();
+    this.timerPaused = false;
+    this.timer = setInterval(() => {
+      if (!this.timerPaused) {
+        this.updateOutPut();
+      }
     }, fmillis);
+
+    this.setAppStatus(AppStatus.RESUME);
 
   }
 
   // TODO this displays the prompt and the last output at the same time
-  promptAndDisplay(){
+  promptAndDisplay() {
     this.promptDialogComponent.visible = true;
   }
 
@@ -102,11 +105,13 @@ export class AppComponent implements OnInit {
   }
 
   haltClick(e) {
+    this.timerPaused = true;
     this.setAppStatus(AppStatus.HALT);
     this.updateOutPut();
   }
 
   resumeClick(e) {
+    this.timerPaused = false;
     this.setAppStatus(AppStatus.RESUME);
     this.updateOutPut();
   }
@@ -114,6 +119,7 @@ export class AppComponent implements OnInit {
   quitClick(e) {
     this.setAppStatus(AppStatus.QUIT);
     this.updateOutPut();
+    clearInterval(this.timer);
   }
 
   addNumber(anum: MyNumber) {
@@ -141,7 +147,7 @@ export enum AppStatus {
   PROMPT = 'Please enter a number',
   INIT = 'Initialized...',
   HALT = 'Halted...',
-  RESUME = 'Resume...',
+  RESUME = 'Running...',
   QUIT = 'Done. Mahalo for playing!'
 }
 
