@@ -19,12 +19,14 @@ export class FrequencyDialogComponent implements OnInit {
   }
 
   btnClick(event) {
+    // TODO - could be better
     const freqTxt = document.getElementById('freq') as HTMLInputElement;
     let f: any = freqTxt.value;
-    debugger;
     if (freqTxt.value.length >= 1) {
       if (!isNaN(f)) {
         this.appComponent.setFrequency(this.frequency);
+
+        // TODO initialize the timer not the prompt dialog soon... dude
         this.appComponent.initPromptDialog();
         this.visible = false;
       } else {
