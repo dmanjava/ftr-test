@@ -18,13 +18,14 @@ export class PromptDialogComponent implements OnInit {
   }
 
   btnClick(event) {
+    // TODO also coule be better with inheritance ... but it works.
     const promptTxt = document.getElementById('prompt') as HTMLInputElement;
     let n: any = promptTxt.value;
-    debugger;
     if (promptTxt.value.length >= 1) {
       if (!isNaN(n)) {
-        this.visible = false;
+        // this.visible = false;
         this.aNumber = promptTxt.value;
+        // we have a number houston
         this.appComponent.addNumber(this.aNumber);
       } else {
         alert('Please enter a valid number.');
