@@ -16,6 +16,24 @@
             type="button"
             label="ok"
             (click)="btnClick($event)"></button>
+
+    <hr>
+    <div class="buttonBar">
+      <button class="actionBtn" #haltBtn pButton icon="fa fa-pause"
+              type="button"
+              label="Halt"
+              (click)="appComponent.haltClick($event)"></button>
+
+      <button class="actionBtn" #resumeBtn pButton icon="fa fa-play"
+              type="button"
+              label="Resume"
+              (click)="appComponent.resumeClick($event)"></button>
+
+      <button class="actionBtn" #quitBtn pButton icon="fa fa-stop"
+              type="button"
+              label="Quit"
+              (click)="appComponent.quitClick($event)"></button>
+    </div>
   </div>
-  <pre>{{aNumber}}</pre>
+  <!--<pre>{{aNumber}}</pre>-->
 </p-dialog>

@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
   // are we initizialized and united?
   inited: boolean;
 
-  title = 'FTR Test App';
+  title = 'FTR - Fibonacci Fun';
 
   // frequency to display output in seconds
   frequency: number;
@@ -51,7 +51,6 @@ export class AppComponent implements OnInit {
   // TODO this only be called by the FrequencyDialogComponent upon validation
   // FIX
   initPromptDialog() {
-    debugger;
     this.initTimer();
 
     // change this after timer is working.
@@ -59,7 +58,6 @@ export class AppComponent implements OnInit {
   }
 
   initTimer() {
-    debugger;
     // TODO do this here for now
     const fmillis = this.frequency * 1000
     this.timerPaused = false;
@@ -120,17 +118,16 @@ export class AppComponent implements OnInit {
     this.setAppStatus(AppStatus.QUIT);
     this.updateOutPut();
     clearInterval(this.timer);
+    this.showPromptDialog(false);
   }
 
   addNumber(anum: MyNumber) {
-    debugger;
     this.output += '\n You entered: ' + anum + '.';
     this.numbers.push(anum);
     // this.showPromptDialog(false);
   }
 
   updateOutPut(s?): string {
-    debugger;
     // timer notification
     this.output += '\n' + ' timer ' + this.getAppStatus();
 
