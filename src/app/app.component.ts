@@ -49,9 +49,10 @@ export class AppComponent implements OnInit {
     this.output = '';
     this.numbers = new Array<number>();
     this.promptDisplaying = false;
-    this.fib = new FibonacciDirective();
 
-    this.updateOutPut('Got the first 1000 Fibs: \n' + this.fib.getAllFibs());
+    // initialize our fibs
+    this.fib = new FibonacciDirective();
+    this.updateOutPut('Got the first ' + this.fib.max + ' Fibs: \n' + this.fib.getAllFibs());
   }
 
 
@@ -66,7 +67,7 @@ export class AppComponent implements OnInit {
 
   initTimer() {
     // TODO do this here for now
-    const fmillis = this.frequency * 1000
+    const fmillis = this.frequency * 1000;
     this.timerPaused = false;
     this.timer = setInterval(() => {
       if (!this.timerPaused) {
@@ -91,7 +92,6 @@ export class AppComponent implements OnInit {
     this.promptDisplaying = show;
     this.promptDialogComponent.visible = this.promptDisplaying;
   }
-
 
   getAppStatus() {
     return this.appStatus;
@@ -131,7 +131,13 @@ export class AppComponent implements OnInit {
   addNumber(anum: number) {
     this.output += '\n You entered: ' + anum + '.';
     this.numbers.push(anum);
-    debugger;
+    const result = this.fib.isFib(anum);
+    if (result) {
+      const tempoutput = 'FIB6';
+      this.updateOutPut(tempoutput);
+    } /*else {
+      this.updateOutPut('You entered: ' + anum);
+    }*/
   }
 
   updateOutPut(s?): string {
@@ -156,8 +162,8 @@ export enum AppStatus {
 }
 
 export class MyNumber {
-   aNumber: number;
-   isFib: boolean;
+  aNumber: number;
+  isFib: boolean;
 
   /*getNumber(): number {
     return this.aNumber;
