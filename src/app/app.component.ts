@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {FrequencyDialogComponent} from './components/frequency-dialog/frequency-dialog.component';
 import {PromptDialogComponent} from './components/prompt-dialog/prompt-dialog.component';
+import {FibonacciDirective} from './util/fibonacci.directive';
 
 @Component({
   selector: 'app-root',
@@ -33,18 +34,24 @@ export class AppComponent implements OnInit {
   output: string;
 
   // this is our array or numbers
-  numbers: Array<MyNumber>;
+  numbers: Array<number>;
 
   // had to...
   promptDisplaying: boolean;
+
+  // our fibonacci helper
+  fib: FibonacciDirective;
 
   ngOnInit(): void {
     this.inited = false;
     this.setFrequency(0);
     this.appStatus = AppStatus.INIT;
     this.output = '';
-    this.numbers = new Array<MyNumber>();
+    this.numbers = new Array<number>();
     this.promptDisplaying = false;
+    this.fib = new FibonacciDirective();
+
+    this.updateOutPut('Got the first 1000 Fibs: \n' + this.fib.getAllFibs());
   }
 
 
@@ -121,10 +128,11 @@ export class AppComponent implements OnInit {
     this.showPromptDialog(false);
   }
 
-  addNumber(anum: MyNumber) {
+  addNumber(anum: number) {
     this.output += '\n You entered: ' + anum + '.';
     this.numbers.push(anum);
     // this.showPromptDialog(false);
+    debugger;
   }
 
   updateOutPut(s?): string {
@@ -152,12 +160,12 @@ export class MyNumber {
    aNumber: number;
    isFib: boolean;
 
-  getNumber(): number {
+  /*getNumber(): number {
     return this.aNumber;
   }
 
   setNumber(num: number) {
     this.aNumber = num;
-  }
+  }*/
 
 }
