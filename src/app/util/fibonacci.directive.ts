@@ -51,14 +51,18 @@ export class FibonacciDirective {
   }
 
   private isItThere(value): number {
+    let found = false;
+    let result = -1
     for (let i = 0; i < this.baseLine.length; i++ ) {
       let v = this.baseLine[i];
-      if (v === value) {
-        return i;
-      } else {
-        return -1;
+      debugger;
+      if (v == value) {
+        result = i;
+        found = true;
+        break;
       }
     }
+    return result;
   }
 
 }

@@ -93,7 +93,6 @@ export class AppComponent implements OnInit {
     this.promptDialogComponent.visible = this.promptDisplaying;
   }
 
-
   getAppStatus() {
     return this.appStatus;
   }
@@ -136,7 +135,9 @@ export class AppComponent implements OnInit {
     if (result) {
       const tempoutput = 'FIB6';
       this.updateOutPut(tempoutput);
-    }
+    } /*else {
+      this.updateOutPut('You entered: ' + anum);
+    }*/
   }
 
   updateOutPut(s?): string {
