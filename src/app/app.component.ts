@@ -138,23 +138,24 @@ export class AppComponent implements OnInit {
   }
 
   updateOutPut(s?): string {
+    let tempoutput = this.output;
     // timer notification
-    this.output += '\n' + ' timer ' + this.getAppStatus();
+    this.output = '\n' + ' timer ' + this.getAppStatus() + '\n' + tempoutput;
 
     if (this.freqNumbers.length > 0) {
-      this.output += '\n\n ' + JSON.stringify(this.freqNumbers);
+      this.output = '\n\n ' + JSON.stringify(this.freqNumbers) + '\n' + tempoutput;
     }
 
     // string to update with
     if (s) {
-      this.output += '\n' + s;
+      this.output = '\n' + s + '\n' + tempoutput;
     }
     return this.output;
   }
 
   addNumber(anum: number) {
     debugger;
-    this.output += '\n You entered: ' + anum + '.';
+    this.updateOutPut('\n You entered: ' + anum + '.');
     this.numbers.push(anum);
 
     // create our MyNumber
@@ -210,6 +211,12 @@ export class AppComponent implements OnInit {
     }
     return this.freqNumbers;
   }
+
+  doSort(): Array<MyNumber> {
+
+
+    return this.sortedFreqNumbers;
+  }
 }
 
 export enum AppStatus {
@@ -217,7 +224,7 @@ export enum AppStatus {
   INIT = 'Initialized...',
   HALT = 'Halted...',
   RESUME = 'Running...',
-  QUIT = 'Done. Mahalo for playing!'
+  QUIT = 'Done. Mahalo for playing Fibonacci Fun!'
 }
 
 export class MyNumber {
