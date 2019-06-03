@@ -131,7 +131,6 @@ export class AppComponent implements OnInit {
   addNumber(anum: number) {
     this.output += '\n You entered: ' + anum + '.';
     this.numbers.push(anum);
-    // this.showPromptDialog(false);
     debugger;
   }
 

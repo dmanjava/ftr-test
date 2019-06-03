@@ -20,6 +20,7 @@ export class FibonacciDirective {
     const one = 1;
     const two = 2;
 
+    // the fibonacci formula
     this.baseLine = [zero, one];
     for (let i = two; i <= this.max; i++) {
       const first = this.baseLine[i - one];
@@ -30,6 +31,10 @@ export class FibonacciDirective {
     console.log(this.baseLine);
     debugger;
     return this.baseLine;
+  }
+
+  isFib(num): boolean {
+
   }
 
 }
