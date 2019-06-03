@@ -7,7 +7,8 @@ import {Directive} from '@angular/core';
 export class FibonacciDirective {
 
   max = 1000;
-  baseLine: any;
+  baseLine: Array<any>;
+  // baseLine: any;
 
   constructor() {
   }
@@ -16,25 +17,48 @@ export class FibonacciDirective {
   getAllFibs() {
 
     // setup our constants
-    const zero = 0;
-    const one = 1;
-    const two = 2;
+    const zero: number = 0;
+    const one: number = 1;
+    const two: number = 2;
 
     // the fibonacci formula
-    this.baseLine = [zero, one];
+
+    this.baseLine = new Array<any>();
+    this.baseLine.push(zero);
+    this.baseLine.push(one);
+
+    // this.baseLine = [zero, one];
+
     for (let i = two; i <= this.max; i++) {
       const first = this.baseLine[i - one];
       const second = this.baseLine[i - two];
-      const result = first + second;
       this.baseLine.push(first + second);
     }
     console.log(this.baseLine);
-    debugger;
     return this.baseLine;
   }
 
-  isFib(num): boolean {
+  isFib(num: any): boolean {
+    debugger;
+    // let tbline = new Array(this.baseLine);
 
+    const index = this.isItThere(num);
+    if (index > -1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  private isItThere(value): number {
+    for (let i = 0; i < this.baseLine.length; i++ ) {
+      let v = this.baseLine[i];
+      if (v === value) {
+        return i;
+      } else {
+        return -1;
+      }
+    }
   }
 
 }
