@@ -22,12 +22,9 @@ export class FibonacciDirective {
     const two: number = 2;
 
     // the fibonacci formula
-
     this.baseLine = new Array<any>();
     this.baseLine.push(zero);
     this.baseLine.push(one);
-
-    // this.baseLine = [zero, one];
 
     for (let i = two; i <= this.max; i++) {
       const first = this.baseLine[i - one];
@@ -39,9 +36,6 @@ export class FibonacciDirective {
   }
 
   isFib(num: any): boolean {
-    debugger;
-    // let tbline = new Array(this.baseLine);
-
     const index = this.isItThere(num);
     if (index > -1) {
       return true;
@@ -55,7 +49,6 @@ export class FibonacciDirective {
     let result = -1
     for (let i = 0; i < this.baseLine.length; i++ ) {
       let v = this.baseLine[i];
-      debugger;
       if (v == value) {
         result = i;
         found = true;
