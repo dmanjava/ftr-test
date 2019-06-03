@@ -11,13 +11,15 @@ import {FrequencyDialogComponent} from './components/frequency-dialog/frequency-
 import {ButtonModule} from 'primeng/button';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {PromptDialogComponent} from './components/prompt-dialog/prompt-dialog.component';
+import { FibonacciDirective } from './util/fibonacci.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
     FrequencyDialogComponent,
-    PromptDialogComponent
+    PromptDialogComponent,
+    FibonacciDirective
   ],
   imports: [
     BrowserModule,
