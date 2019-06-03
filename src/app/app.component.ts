@@ -36,6 +36,12 @@ export class AppComponent implements OnInit {
   // this is our array or numbers
   numbers: Array<number>;
 
+  // this our numbers with frequency and is fib
+  freqNumbers: Array<MyNumber>;
+
+  // this is the numbers with frequency sorted in descending order
+  sortedFreqNumbers: Array<MyNumber>;
+
   // had to...
   promptDisplaying: boolean;
 
@@ -48,8 +54,11 @@ export class AppComponent implements OnInit {
     this.appStatus = AppStatus.INIT;
     this.output = '';
     this.numbers = new Array<number>();
-    this.promptDisplaying = false;
+    this.freqNumbers = new Array<MyNumber>();
+    // init our sorted frequency numbers each time
+    this.sortedFreqNumbers = new Array<MyNumber>();
 
+    this.promptDisplaying = false;
     // initialize our fibs
     this.fib = new FibonacciDirective();
     this.updateOutPut('Got the first ' + this.fib.max + ' Fibs: \n' + this.fib.getAllFibs());
@@ -128,21 +137,13 @@ export class AppComponent implements OnInit {
     this.showPromptDialog(false);
   }
 
-  addNumber(anum: number) {
-    this.output += '\n You entered: ' + anum + '.';
-    this.numbers.push(anum);
-    const result = this.fib.isFib(anum);
-    if (result) {
-      const tempoutput = 'FIB6';
-      this.updateOutPut(tempoutput);
-    } /*else {
-      this.updateOutPut('You entered: ' + anum);
-    }*/
-  }
-
   updateOutPut(s?): string {
     // timer notification
     this.output += '\n' + ' timer ' + this.getAppStatus();
+
+    if (this.freqNumbers.length > 0) {
+      this.output += '\n\n ' + JSON.stringify(this.freqNumbers);
+    }
 
     // string to update with
     if (s) {
@@ -151,6 +152,64 @@ export class AppComponent implements OnInit {
     return this.output;
   }
 
+  addNumber(anum: number) {
+    debugger;
+    this.output += '\n You entered: ' + anum + '.';
+    this.numbers.push(anum);
+
+    // create our MyNumber
+    let tempmynumber = new MyNumber();
+    tempmynumber.aNumber = anum;
+    tempmynumber.isFib = false;
+    tempmynumber.frequency = 1;
+
+    const result = this.fib.isFib(anum);
+    if (result) {
+      // update if we have a fib
+      tempmynumber.isFib = true;
+      const tempoutput = 'FIB';
+      // check if it already been added.
+      this.calculateAndOrderFreqency(tempmynumber);
+
+      this.updateOutPut(tempoutput);
+    } else {
+      // check if it already been added.
+      this.calculateAndOrderFreqency(tempmynumber);
+    }
+  }
+
+  calculateAndOrderFreqency(n: MyNumber): Array<MyNumber> {
+    debugger;
+    let found = false;
+
+    // add only the first element this way
+    if (this.freqNumbers.length === 0) {
+      this.freqNumbers.push(n);
+      return this.freqNumbers;
+    }
+
+    // check if we already have that number
+    for (let i = 0; i < this.freqNumbers.length; i++) {
+      let mynum = this.freqNumbers[i];
+
+      // did we find it add it to the new sorted frequency array and
+      // increment the frequency
+      if (n.aNumber == mynum.aNumber) {
+        // this.freqNumbers[i].frequency++;
+        mynum.frequency++;
+        this.sortedFreqNumbers.push(mynum);
+        found = true;
+        break;
+      }
+    }
+
+    // if we did not find it add the new number to our freq and sorted arrays
+    if (!found) {
+      this.freqNumbers.push(n);
+      this.sortedFreqNumbers.push(n);
+    }
+    return this.freqNumbers;
+  }
 }
 
 export enum AppStatus {
@@ -163,14 +222,6 @@ export enum AppStatus {
 
 export class MyNumber {
   aNumber: number;
+  frequency: number;
   isFib: boolean;
-
-  /*getNumber(): number {
-    return this.aNumber;
-  }
-
-  setNumber(num: number) {
-    this.aNumber = num;
-  }*/
-
 }
