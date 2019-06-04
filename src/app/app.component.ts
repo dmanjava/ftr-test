@@ -163,15 +163,14 @@ export class AppComponent implements OnInit {
     tempmynumber.isFib = false;
     tempmynumber.frequency = 1;
 
-    const result = this.fib.isFib(anum);
+    const result = this.fib.isFibonacci(anum);
     if (result) {
       // update if we have a fib
       tempmynumber.isFib = true;
       const tempoutput = 'FIB';
+      this.updateOutPut(tempoutput);
       // check if it already been added.
       this.calculateAndOrderFreqency(tempmynumber);
-
-      this.updateOutPut(tempoutput);
     } else {
       // check if it already been added.
       this.calculateAndOrderFreqency(tempmynumber);
@@ -179,7 +178,6 @@ export class AppComponent implements OnInit {
   }
 
   calculateAndOrderFreqency(n: MyNumber): Array<MyNumber> {
-    debugger;
     let found = false;
 
     // add only the first element this way
@@ -197,14 +195,6 @@ export class AppComponent implements OnInit {
       // increment the frequency
       if (n.aNumber == mynum.aNumber) {
         mynum.frequency++;
-        // let checkout our sorted array
-        /*const insorted = this.findInSorted(mynum);
-        if (insorted > -1) {
-          this.sortedFreqNumbers[insorted].frequency++;
-        }*/ /*else {
-          // dont push it update the existing one.
-          this.sortedFreqNumbers.push(mynum);
-        }*/
         found = true;
         break;
       }
@@ -242,21 +232,6 @@ export class AppComponent implements OnInit {
     const item = arr[a];
     arr[a] = arr[b];
     arr[b] = item;
-  }
-
-  // find the number in the sorted array
-  private findInSorted(anum: MyNumber): number {
-    // let found = false;
-    let index = -1;
-    for (let i = 0; i < this.sortedFreqNumbers.length; i++) {
-      let s = this.sortedFreqNumbers[i];
-      if (anum.aNumber == s.aNumber) {
-        // found = true;
-        index = i;
-        break;
-      }
-    }
-    return index;
   }
 }
 

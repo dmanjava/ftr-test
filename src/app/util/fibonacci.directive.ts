@@ -35,7 +35,7 @@ export class FibonacciDirective {
     return this.baseLine;
   }
 
-  isFib(num: any): boolean {
+  isFibonacci(num: any): boolean {
     const index = this.isItThere(num);
     if (index > -1) {
       return true;
