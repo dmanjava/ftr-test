@@ -142,8 +142,8 @@ export class AppComponent implements OnInit {
     // timer notification
     this.output = '\n' + ' timer ' + this.getAppStatus() + '\n' + tempoutput;
 
-    if (this.freqNumbers.length > 0) {
-      this.output = '\n\n ' + JSON.stringify(this.freqNumbers) + '\n' + tempoutput;
+    if (this.sortedFreqNumbers.length > 0) {
+      this.output = '\n\n ' + JSON.stringify(this.sortedFreqNumbers) + '\n' + tempoutput;
     }
 
     // string to update with
@@ -154,7 +154,6 @@ export class AppComponent implements OnInit {
   }
 
   addNumber(anum: number) {
-    debugger;
     this.updateOutPut('\n You entered: ' + anum + '.');
     this.numbers.push(anum);
 
@@ -164,15 +163,14 @@ export class AppComponent implements OnInit {
     tempmynumber.isFib = false;
     tempmynumber.frequency = 1;
 
-    const result = this.fib.isFib(anum);
+    const result = this.fib.isFibonacci(anum);
     if (result) {
       // update if we have a fib
       tempmynumber.isFib = true;
       const tempoutput = 'FIB';
+      this.updateOutPut(tempoutput);
       // check if it already been added.
       this.calculateAndOrderFreqency(tempmynumber);
-
-      this.updateOutPut(tempoutput);
     } else {
       // check if it already been added.
       this.calculateAndOrderFreqency(tempmynumber);
@@ -180,12 +178,12 @@ export class AppComponent implements OnInit {
   }
 
   calculateAndOrderFreqency(n: MyNumber): Array<MyNumber> {
-    debugger;
     let found = false;
 
     // add only the first element this way
     if (this.freqNumbers.length === 0) {
       this.freqNumbers.push(n);
+      this.sortedFreqNumbers.push(n);
       return this.freqNumbers;
     }
 
@@ -196,9 +194,7 @@ export class AppComponent implements OnInit {
       // did we find it add it to the new sorted frequency array and
       // increment the frequency
       if (n.aNumber == mynum.aNumber) {
-        // this.freqNumbers[i].frequency++;
         mynum.frequency++;
-        this.sortedFreqNumbers.push(mynum);
         found = true;
         break;
       }
@@ -209,13 +205,33 @@ export class AppComponent implements OnInit {
       this.freqNumbers.push(n);
       this.sortedFreqNumbers.push(n);
     }
-    return this.freqNumbers;
+    return this.doSort();
   }
 
-  doSort(): Array<MyNumber> {
-
-
+  // use our sortedFreqNumbers array
+  private doSort(): Array<MyNumber> {
+    // our switched indicator
+    let switched: boolean = false;
+    do {
+      switched = false;
+      for (let i = 0; i < this.sortedFreqNumbers.length; i++) {
+        if ((this.sortedFreqNumbers[i].frequency)
+          && (this.sortedFreqNumbers[i + 1].frequency)
+          && (this.sortedFreqNumbers[i].frequency < this.sortedFreqNumbers[i + 1].frequency)
+        ) {
+          this.doSwitch(this.sortedFreqNumbers, i, i + 1);
+          switched = true;
+        }
+      }
+    } while (switched);
     return this.sortedFreqNumbers;
+  }
+
+  // helper tp swap the item in question
+  private doSwitch(arr: Array<MyNumber>, a, b) {
+    const item = arr[a];
+    arr[a] = arr[b];
+    arr[b] = item;
   }
 }
 
